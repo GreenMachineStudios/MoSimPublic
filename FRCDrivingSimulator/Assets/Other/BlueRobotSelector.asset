@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d018ef0365c4364f9910e450e4f2afe, type: 3}
+  m_Name: BlueRobotSelector
+  m_EditorClassIdentifier: 
+  robot:
+  - robotName: Orbit
+    robotImage: {fileID: 21300000, guid: 82b5c3d0307a9084684576233a7315e9, type: 3}
+    robotNumber: 1690
+  - robotName: Mukwonago Bears
+    robotImage: {fileID: 21300000, guid: 42881869c2fad3f489d39bd498f72fc6, type: 3}
+    robotNumber: 930
+  - robotName: Citrus Circuits
+    robotImage: {fileID: 21300000, guid: 4031a5d5f7b3d2745b45e0a7f5e67141, type: 3}
+    robotNumber: 1678

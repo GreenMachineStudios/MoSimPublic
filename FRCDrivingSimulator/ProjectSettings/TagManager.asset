@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ring
+  - Zone
+  - ChainLink
+  - RedPlayer
+  - Wall
+  - Field
+  - noteShotByRed
+  - noteShotByBlue
+  - blueAmpScoredNote
+  - redAmpScoredNote
+  - ignore
+  - Ground
+  - Chain
+  - Destroying
+  - Player2
+  - RedPlayer2
+  - noteShotByRed2
+  - noteShotByBlue2
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Ring
+  - Robot
+  - PostProcessing
+  - InMyWay
+  - Hangers
+  - RobotRigidbodyPlsIgnore
+  - RobotIgnore
+  - Field
+  - BlueCam
+  - RedCam
+  - NoteIgnore
+  - IgnoreAllCollisions
+  - IgnoreRings
+  - DontCollideWithField
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
