@@ -22,3 +22,6 @@ MonoBehaviour:
   - robotName: Citrus Circuits
     robotImage: {fileID: 21300000, guid: 4031a5d5f7b3d2745b45e0a7f5e67141, type: 3}
     robotNumber: 1678
+  - robotName: Killshon
+    robotImage: {fileID: 21300000, guid: 37f194dde33ebcd479cc8f69fac1b559, type: 3}
+    robotNumber: 9986

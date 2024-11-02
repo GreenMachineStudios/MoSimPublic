@@ -20,12 +20,10 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
     private bool amp;
 
     private RobotNoteManager ringCollisions;
-    private TurretAlignToSpeaker turret;
 
     private void Start() 
     {
         ringCollisions = GetComponent<RobotNoteManager>();
-        turret = GetComponent<TurretAlignToSpeaker>();
         shootingSpeed = ringCollisions.shootingSpeed;
 
         startRotation = ampPivot.transform.localRotation;
@@ -47,15 +45,12 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
         {
             isAmping = false;
             ringCollisions.isAmping = false;
-            turret.isAmping = false;
         }
     }
 
     private void PrepareAmp() 
     {
         ringCollisions.isAmping = true;
-        turret.turretSpeed = 300;
-        turret.TurretAmp(0.5f);
     }
 
     public void AmpAction()
@@ -83,7 +78,6 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
         }
 
         Quaternion ampRotation = Quaternion.Euler(ampPos);
-        turret.StartCoroutine(turret.RotateShooterToAmp(ampRotation, 0.2f, 0.5f));
 
         ampPivot.transform.localRotation = targetRotation;
 
@@ -118,12 +112,8 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
         ringCollisions.shootingSpeed = shootingSpeed;
 
         //Allow the turret to go back
-        turret.isAmping = false;
         isAmping = false;
         ringCollisions.isAmping = false;
-
-        //Unstow turret
-        StartCoroutine(turret.UnstowTurret());
     }
 
     public void Reset() 
@@ -131,7 +121,6 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
         StopAllCoroutines();
         ampPivot.transform.localRotation = startRotation;
         ringCollisions.shootingSpeed = shootingSpeed;
-        turret.isAmping = false;
         isAmping = false;
     }
 
