@@ -242,7 +242,7 @@ public class RobotNoteManager : MonoBehaviour, IResettable
         note.GetComponent<RingBehaviour>().StartCoroutine(note.GetComponent<RingBehaviour>().UnSquishhhh());
     }
 
-    private void AmpRing()
+    public void AmpRing()
     {
         hasRingInRobot = false;
 

@@ -10,7 +10,6 @@ public class KillshonClimb : MonoBehaviour, IResettable
 
     private bool climb;
     private bool prepped = false;
-    private bool isClimbing = false;
 
     private Vector3 climberStartingPos;
     private Quaternion climberStartingRot;
@@ -25,28 +24,28 @@ public class KillshonClimb : MonoBehaviour, IResettable
 
     private void Update()
     {
-        if (climb && !isClimbing)
+        if (climb && !prepped)
         {
-            isClimbing = true;
             StartCoroutine(ClimbSequence());
         }
         else if (climb && prepped)
         {
-            prepped = false;
-            HangSequence();
+            StartCoroutine(HangSequence());
         }
     }
 
     private IEnumerator ClimbSequence() 
     {
-        climber.targetRotation = Quaternion.Euler(-100, 0, 0);
+        climber.targetRotation = Quaternion.Euler(90, 0, 0);
         yield return new WaitForSeconds(0.5f);
         prepped = true;
     }
 
-    private void HangSequence() 
+    private IEnumerator HangSequence() 
     {
         climber.targetRotation = Quaternion.Euler(0, 0, 0);
+        yield return new WaitForSeconds(0.5f);
+        prepped = false;
     }
 
     public void OnClimb(InputAction.CallbackContext ctx)
@@ -65,7 +64,6 @@ public class KillshonClimb : MonoBehaviour, IResettable
         climber.gameObject.layer = 17;
 
         prepped = false;
-        isClimbing = false;
 
         //Reset joints pos and rot and targetPos
         climber.gameObject.transform.localPosition = climberStartingPos;

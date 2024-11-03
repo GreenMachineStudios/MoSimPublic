@@ -4,20 +4,18 @@ using UnityEngine.InputSystem;
 
 public class RotatingAmpArm : MonoBehaviour, IResettable
 {
-    [SerializeField] private Alliance alliance;
     [SerializeField] private GameObject ampPivot;
-    [SerializeField] private Collider ampCollider;
-    [SerializeField] private Transform ampTarget;
-    [SerializeField] private float ampSpeed;
     [SerializeField] private float ampDuration;
+    [SerializeField] private float ampShotSpeed;
     [SerializeField] private Vector3 targetPos = Vector3.zero;
-    [SerializeField] private Vector3 ampPos = Vector3.zero;
 
     Quaternion startRotation;
 
     private float shootingSpeed;
     public bool isAmping;
     private bool amp;
+
+    private bool shotNote;
 
     private RobotNoteManager ringCollisions;
 
@@ -40,6 +38,7 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
                     PrepareAmp();
                 }
             }
+            AmpAction();
         }
         else 
         {
@@ -55,16 +54,16 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
 
     public void AmpAction()
     {
-        if (!isAmping) 
+        if (ringCollisions.isAmping) 
         {
             StartCoroutine(Amp());
+            ringCollisions.isAmping = false;
         }
     }
 
     public IEnumerator Amp()
     {
         isAmping = true;
-
         Quaternion targetRotation = Quaternion.Euler(targetPos.x, targetPos.y, targetPos.z);
 
         float elapsedTime = 0f;
@@ -77,28 +76,15 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
             yield return null;
         }
 
-        Quaternion ampRotation = Quaternion.Euler(ampPos);
-
         ampPivot.transform.localRotation = targetRotation;
 
-        yield return new WaitForSeconds(0.4f);
+        ringCollisions.shootingSpeed = ampShotSpeed;
 
-        ringCollisions.shootingSpeed = 10;
-        ringCollisions.ShootRing();
-        GameObject note = ringCollisions.note;
+        yield return new WaitForSeconds(0.2f);
 
-        elapsedTime = 0f;
-        while (elapsedTime < 0.3f) 
-        {
-            if (ampCollider.bounds.Intersects(note.GetComponent<Collider>().bounds))
-            {
-                Destroy(note);
-                ringCollisions.StartCoroutine(ringCollisions.AmpSequence());
-                break;
-            }
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        ringCollisions.AmpRing();
+
+        yield return new WaitForSeconds(0.3f);
 
         elapsedTime = 0f;
         while (elapsedTime < duration)
@@ -111,7 +97,6 @@ public class RotatingAmpArm : MonoBehaviour, IResettable
         ampPivot.transform.localRotation = startRotation;
         ringCollisions.shootingSpeed = shootingSpeed;
 
-        //Allow the turret to go back
         isAmping = false;
         ringCollisions.isAmping = false;
     }
