@@ -209,7 +209,7 @@ public class DriveController : MonoBehaviour, IResettable
 
         if (GameManager.GameState == GameState.Endgame || GameManager.endBuzzerPlaying)
         {
-            if (robotType == RobotSettings.HighTide || robotType == RobotSettings.CitrusCircuits) 
+            if (robotType == RobotSettings.HighTide || robotType == RobotSettings.CitrusCircuits || robotType == RobotSettings.Killshon) 
             {
                 isTouchingGround = CheckTouchingGround();
             }

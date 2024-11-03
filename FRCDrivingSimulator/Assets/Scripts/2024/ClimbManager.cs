@@ -14,7 +14,7 @@ public class ClimbManager : MonoBehaviour
                 //Only climb for enabled robots that are hightide & citrusciruits (only robot that can climb)
                 if (robot.isActiveAndEnabled)
                 {
-                    if (robot.robotType == RobotSettings.HighTide || robot.robotType == RobotSettings.CitrusCircuits) 
+                    if (robot.robotType == RobotSettings.HighTide || robot.robotType == RobotSettings.CitrusCircuits || robot.robotType == RobotSettings.Killshon) 
                     {
                         if (!robot.isTouchingGround && !robot.isClimbed && ChainDetector.isBlueTouchingChain)
                         {
@@ -37,7 +37,7 @@ public class ClimbManager : MonoBehaviour
                 //Only climb for enabled robots that are hightide & citrusciruits (only robot that can climb)
                 if (robot.isActiveAndEnabled)
                 {
-                    if (robot.robotType == RobotSettings.HighTide || robot.robotType == RobotSettings.CitrusCircuits) 
+                    if (robot.robotType == RobotSettings.HighTide || robot.robotType == RobotSettings.CitrusCircuits || robot.robotType == RobotSettings.Killshon) 
                     {
                         if (!robot.isTouchingGround && !robot.isClimbed && ChainDetector.isRedTouchingChain)
                         {
